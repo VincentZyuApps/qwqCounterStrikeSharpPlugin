@@ -12,11 +12,17 @@
    参考 https://cs2.poggu.me/metamod/installation/  
    下载对应的发行版，比如 Linux 版，解压到 `csgo/` 目录
 
+   解压后结构：
+   ```
+   csgo/addons/
+   └── metamod/
+   ```
+
 2. **安装 CounterStrikeSharp**  
    下载 [with-runtime 版本](https://github.com/roflmuffin/CounterStrikeSharp/releases)  
    解压 `addons/` 合并到 `csgo/` 目录
 
-   最终结构：
+   合并后结构：
    ```
    csgo/
    ├── addons/
@@ -28,10 +34,12 @@
    ```
 
 3. **放入插件**
-   从 [Releases](https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/latest) 下载 `.dll` 和 `.pdb` 文件：
+   从 [Releases](https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/latest) 下载 `.dll` 和 `.pdb` 文件到插件目录：
    ```bash
-   cp qwqCounterStrikePlugin-*.dll \
-      csgo/addons/counterstrikesharp/plugins/
+   TAG=<最新版本号>
+   cd csgo/addons/counterstrikesharp/plugins/
+   wget "https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/download/$TAG/qwqCounterStrikePlugin-$TAG.dll"
+   wget "https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/download/$TAG/qwqCounterStrikePlugin-$TAG.pdb"
    ```
 
 4. **启动服务器**
@@ -46,10 +54,14 @@
 
 ### 实操记录
 
-本机（Debian）完整部署命令：
+Debian13机器 完整部署命令：
 
 ```bash
 # 1. 解压 Metamod 到 CS2 目录
+# 正确结构: csgo/addons/
+#              ├── metamod/
+#              ├── metamod.vdf
+#              └── metamod_x64.vdf
 tar -xzf /home/mac/SSoftwareFiles/mmsource/mmsource-2.0.0-git1402-linux.tar.gz \
   -C "/root/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/"
 
@@ -57,24 +69,26 @@ tar -xzf /home/mac/SSoftwareFiles/mmsource/mmsource-2.0.0-git1402-linux.tar.gz \
 ls /root/.local/share/Steam/steamapps/common/Counter-Strike\ Global\ Offensive/game/csgo/addons/
 
 # 2. 装 CounterStrikeSharp
+# 正确结构: csgo/addons/{metamod/, counterstrikesharp/{api/, dotnet/, plugins/}}
 cp -r /home/mac/SSoftwareFiles/css/ccs-with-runtime/addons/* \
   "/root/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/addons/"
 
-# 3. 下载插件 Release
-# 去 https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/latest
-# 找到最新 tag（如 v0.0.1-5），替换下面的 TAG
-TAG=v0.0.1-5
-cd /tmp
-wget "https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/download/$TAG/qwqCounterStrikePlugin-$TAG.dll"
-wget "https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/download/$TAG/qwqCounterStrikePlugin-$TAG.pdb"
+# 检查结构
+tree /root/.local/share/Steam/steamapps/common/Counter-Strike\ Global\ Offensive/game/csgo/addons/
 
-# 4. 放入插件目录
-cp /tmp/qwqCounterStrikePlugin-$TAG.dll \
-  "/root/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/addons/counterstrikesharp/plugins/"
+
+# 3. 下载插件到插件目录（去 Releases 找最新 tag 替换）
+TAG=v0.0.1-5
+cd "/root/.local/share/Steam/steamapps/common/Counter-Strike Global Offensive/game/csgo/addons/counterstrikesharp/plugins/"
+proxychains4 wget "https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/download/$TAG/qwqCounterStrikePlugin-$TAG.dll"
+proxychains4 wget "https://github.com/VincentZyu233/qwqCounterStrikePlugin/releases/download/$TAG/qwqCounterStrikePlugin-$TAG.pdb"
 
 # 5. 启动服务器
 /root/.local/share/Steam/steamapps/common/Counter-Strike\ Global\ Offensive/game/bin/linuxsteamrt64/cs2 \
   -dedicated -game csgo +map de_dust2 +sv_lan 1
+
+# 或者使用启动脚本
+/home/mac/SSoftwareFiles/cs2ds/cs2ds.sh
 ```
 
 ## GitHub Actions
