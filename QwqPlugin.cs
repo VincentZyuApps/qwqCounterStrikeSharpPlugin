@@ -9,43 +9,32 @@ namespace qwqCounterStrikePlugin;
 public class QwqPlugin : BasePlugin
 {
     public override string ModuleName => "qwq CounterStrike Plugin";
-    public override string ModuleVersion => "0.1.2";
+    public override string ModuleVersion => "0.1.3";
 
     public override void Load(bool hotReload)
     {
-        Logger.LogInformation("Load() called, registering EventPlayerChat...");
-
-        RegisterEventHandler<EventPlayerChat>((@event, info) =>
+        RegisterEventHandler<EventPlayerChat>((@event, _) =>
         {
-            Logger.LogInformation("EventPlayerChat fired!");
-            Logger.LogInformation($"  userid={@event.Userid}");
-            Logger.LogInformation($"  text='{@event.Text}'");
-            Logger.LogInformation($"  teamonly={@event.Teamonly}");
+            Logger.LogInformation($"EventPlayerChat fired: userid={@event.Userid}, text='{@event.Text}', teamonly={@event.Teamonly}");
 
-            var player = Utilities.GetPlayerFromIndex(@event.Userid);
+            var player = Utilities.GetPlayerFromUserid(@event.Userid);
             if (player == null)
             {
-                Logger.LogInformation("  player is NULL");
+                Logger.LogInformation("player is NULL");
                 return HookResult.Continue;
             }
-            Logger.LogInformation($"  player.IsValid={player.IsValid}");
-            Logger.LogInformation($"  player.PlayerName='{player.PlayerName}'");
-            Logger.LogInformation($"  player.SteamID={player.SteamID}");
-
-            var trimmed = @event.Text.Trim().ToLower();
-            Logger.LogInformation($"  trimmed text='{trimmed}'");
-            Logger.LogInformation($"  matches qwq? {trimmed == "qwq"}");
-
-            if (trimmed == "qwq")
+            if (!player.IsValid)
             {
-                Logger.LogInformation("  MATCH! Attempting PrintToChat...");
-                player.PrintToChat($" {ChatColors.Green}qwq!");
-                Logger.LogInformation("  PrintToChat completed.");
+                Logger.LogInformation("player is invalid");
+                return HookResult.Continue;
             }
+
+            Logger.LogInformation($"player={player.PlayerName}, steamid={player.SteamID}");
+
+            if (@event.Text.Trim().ToLower() == "qwq")
+                player.PrintToChat($" {ChatColors.Green}qwq!");
 
             return HookResult.Continue;
         });
-
-        Logger.LogInformation("EventPlayerChat registered.");
     }
 }
