@@ -40,14 +40,14 @@ jobs:
       - run: dotnet restore
       - run: dotnet build -c Release --no-restore
       - run: |
+          VERSION="${{ needs.check.outputs.version }}"
           mkdir -p output
-          cp bin/Release/net10.0/qwqCounterStrikePlugin.dll output/
-          cp bin/Release/net10.0/*.pdb output/ 2>/dev/null || true
-          cd output && zip -r ../qwqCounterStrikePlugin.zip .
+          cp bin/Release/net10.0/qwqCounterStrikePlugin.dll "output/qwqCounterStrikePlugin-$VERSION.dll"
+          cp bin/Release/net10.0/qwqCounterStrikePlugin.pdb "output/qwqCounterStrikePlugin-$VERSION.pdb"
       - uses: actions/upload-artifact@v4
         with:
-          name: qwqCounterStrikePlugin
-          path: qwqCounterStrikePlugin.zip
+          name: qwqCounterStrikePlugin-${{ needs.check.outputs.version }}
+          path: output/
 
   release:
     needs: [check, build]
@@ -58,11 +58,12 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: qwqCounterStrikePlugin
+          name: qwqCounterStrikePlugin-${{ needs.check.outputs.version }}
+          path: output
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: qwqCounterStrikePlugin.zip
+          files: output/*
           tag_name: ${{ needs.check.outputs.version }}
           name: "qwqCounterStrikePlugin ${{ needs.check.outputs.version }}"
           generate_release_notes: true
