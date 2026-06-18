@@ -8,36 +8,37 @@
 
 [![QQ群](https://img.shields.io/badge/QQ群-1085190201-12B7F5?style=for-the-badge&logo=qq&logoColor=white)](https://qm.qq.com/q/4vjto4V7Di)
 
+<p><del>💬 插件使用问题 / 🐛 Bug反馈 / 👨‍💻 插件开发交流，欢迎加入QQ群：<b>259248174</b>   🎉（这个群G了</del> </p>
 <p>💬 插件使用问题 / 🐛 Bug反馈 / 👨‍💻 插件开发交流，欢迎加入QQ群：<b>1085190201</b> 🎉</p>
 <p>💡 在群里直接艾特我，回复的更快哦~ ✨</p>
 
 # 🎮 ✨ 🚀 💬 qwqCounterStrikeSharpPlugin
 
-一个 Counter-Strike 2 服务端插件，玩家在聊天框输入 `qwq`，服务端回复 `qwq!`。
+A Counter-Strike 2 server plugin. Type `qwq` in chat, the server replies `qwq!`.
 
-基于 [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp) 框架，使用 C# (.NET 10) 编写。
+Built on [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp), written in C# (.NET 10).
 
-![效果预览](doc/images/preview.cs2.server-console.client-console.client-chat.png)
+![effect preview](doc/images/preview.cs2.server-console.client-console.client-chat.png)
 
-## 🏃 💨 🔜 快速开始
+## 🏃 💨 🔜 Quick Start
 
-### 📦 🔧 部署到服务器
+### 📦 🔧 Deploy to Server
 
-1. **安装 Metamod:Source**  
-   参考 https://cs2.poggu.me/metamod/installation/  
-   下载对应的发行版，比如 Linux 版，解压到 `csgo/` 目录
+1. **Install Metamod:Source**  
+   See https://cs2.poggu.me/metamod/installation/  
+   Download the Linux build and extract to the `csgo/` directory
 
-   解压后结构：
+   Structure after extraction:
    ```
    csgo/addons/
    └── metamod/
    ```
 
-2. **安装 CounterStrikeSharp**  
-   下载 [with-runtime 版本](https://github.com/roflmuffin/CounterStrikeSharp/releases)  
-   解压 `addons/` 合并到 `csgo/` 目录
+2. **Install CounterStrikeSharp**  
+   Download the [with-runtime release](https://github.com/roflmuffin/CounterStrikeSharp/releases)  
+   Merge the `addons/` folder into `csgo/`
 
-   合并后结构：
+   Structure after merging:
    ```
    csgo/
    └── addons/
@@ -48,11 +49,11 @@
          └── plugins/
    ```
 
-3. **放入插件**
-   CSS 要求插件放在 `plugins/<插件名>/<插件名>.dll` 子目录中（目录名 = DLL 文件名）。
-   从 [Releases](https://github.com/VincentZyuApps/qwqCounterStrikeSharpPlugin/releases/latest) 下载 `.dll`：
+3. **Add the Plugin**
+   CSS requires plugins in `plugins/<PluginName>/<PluginName>.dll` (directory name = DLL filename).
+   Download the `.dll` from [Releases](https://github.com/VincentZyuApps/qwqCounterStrikeSharpPlugin/releases/latest):
    ```bash
-   TAG=<最新版本号>
+   TAG=<latest version tag>
    PLUGIN_DIR=csgo/addons/counterstrikesharp/plugins/qwqCounterStrikeSharpPlugin
    mkdir -p $PLUGIN_DIR
    cd $PLUGIN_DIR
@@ -60,113 +61,113 @@
    mv qwqCounterStrikeSharpPlugin-$TAG.dll qwqCounterStrikeSharpPlugin.dll
    ```
 
-   最终插件结构：
+   Final plugin structure:
    ```
    plugins/
    └── qwqCounterStrikeSharpPlugin/
        └── qwqCounterStrikeSharpPlugin.dll
    ```
 
-4. **启动服务器**
+4. **Start the Server**
    ```bash
    ./cs2 -dedicated -game csgo +map de_dust2 +sv_lan 1
    ```
 
-   控制台看到 `Finished loading plugin qwq CounterStrike Plugin` 即加载成功。
+   You should see `Finished loading plugin qwq CounterStrikeSharp Plugin` in the console.
 
-5. **进游戏测试**  
-   聊天框输入 `qwq` → 收到绿色回复 `qwq!`
+5. **Test In-Game**  
+   Type `qwq` in chat → you'll see a green `qwq!` reply.
 
-> **[📋 我的自己的环境的部署指令记录](doc/images/prod/prod.md)**
+> **[📋 My deployment notes](doc/images/prod/prod.md)**
 
 ## 🤖 ⚙️ 🔄 GitHub Actions
 
-推送到 GitHub 时，**commit 信息中的关键词控制流水线行为**。  
-详细说明见下方 [「构建工作流指南」](#构建工作流指南)。
+When pushing to GitHub, **keywords in the commit message control the pipeline**.  
+Full details in the [「Build Workflow Guide」](#-build-workflow-guide) below.
 
-| 关键词 | 构建 | 发布 Release |
+| Keyword | Build | Release |
 |---|---|---|
 | `build action` | ✅ | ❌ |
 | `build release` | ✅ | ✅ |
 
-[![最后提交](https://img.shields.io/github/last-commit/VincentZyuApps/qwqCounterStrikeSharpPlugin?style=for-the-badge&label=最后提交&labelColor=181717&color=555555)](https://github.com/VincentZyuApps/qwqCounterStrikeSharpPlugin/commits/main)
-[![构建状态](https://img.shields.io/github/actions/workflow/status/VincentZyuApps/qwqCounterStrikeSharpPlugin/build.yml?style=for-the-badge&label=构建状态&labelColor=181717&logo=github)](https://github.com/VincentZyuApps/qwqCounterStrikeSharpPlugin/actions)
+[![Last Commit](https://img.shields.io/github/last-commit/VincentZyuApps/qwqCounterStrikeSharpPlugin?style=for-the-badge&label=Last%20Commit&labelColor=181717&color=555555)](https://github.com/VincentZyuApps/qwqCounterStrikeSharpPlugin/commits/main)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/VincentZyuApps/qwqCounterStrikeSharpPlugin/build.yml?style=for-the-badge&label=Build%20Status&labelColor=181717&logo=github)](https://github.com/VincentZyuApps/qwqCounterStrikeSharpPlugin/actions)
 
-## 📋 🏗️ 🚀 构建工作流指南
+## 📋 🏗️ 🚀 Build Workflow Guide
 
-推送到 GitHub 时，**commit 信息中的关键词**控制 CI/CD 流水线的行为。
+When pushing to GitHub, **keywords in the commit message** control the CI/CD pipeline.
 
-### 🔑 📌 关键词速查
+### 🔑 📌 Keywords Reference
 
-| 关键词 | Build（编译 DLL） | Release（发布到 Releases） |
+| Keyword | Build DLL | Publish Release |
 |---|---|---|
 | `build action` | ✅ | ❌ |
 | `build release` | ✅ | ✅ |
 
-#### ⚠️ 关键词不匹配
+#### ⚠️ No Keyword Matched
 
-如果 commit 信息中**没有上述任一关键词**，流水线**不执行**，不会浪费 Actions 配额。
+If the commit message contains **none of the keywords above**, the pipeline **will not run**, saving your Actions quota.
 
-### 🏭 📊 流水线阶段
+### 🏭 📊 Pipeline Stages
 
 ```
 check ──→ build ──→ release
   │         │         │
-  │         │         └── 下载 artifact → 创建 GitHub Release → 上传 zip
+  │         │         └── download artifact → create GitHub Release → upload zip
   │         │
-  │         └── dotnet restore → dotnet build → 打包 zip → 上传 artifact
+  │         └── dotnet restore → dotnet build → zip → upload artifact
   │
-  └── 解析 commit 信息 → 输出控制 flag
+  └── parse commit message → set control flags
 ```
 
-#### 🔍 阶段一：check（解析 commit）
+#### 🔍 Stage 1: check (parse commit)
 
-- 读取最新一条 commit 的 message
-- 匹配关键词，设置 `should_build` / `should_release` 开关
-- 从 `qwqCounterStrikeSharpPlugin.csproj` 的 `<Version>` 标签提取版本号
-- Release 标签格式：`v{版本号}-{run_number}` （例如 `v0.0.1-42`）
+- Read the latest commit message
+- Match keywords, set `should_build` / `should_release` flags
+- Extract version from `<Version>` in `qwqCounterStrikeSharpPlugin.csproj`
+- Release tag format: `v{version}-{run_number}` (e.g. `v0.0.1-42`)
 
-#### 🛠️ 阶段二：build（编译）
+#### 🛠️ Stage 2: build (compile)
 
-- `dotnet restore` 还原 NuGet 依赖
-- `dotnet build -c Release` 编译插件
-- 产出 `QwqCounterStrikeSharpPlugin.dll` + `.pdb` 打包为 `qwqCounterStrikeSharpPlugin.zip`
-- 上传到 Actions Artifact
+- `dotnet restore` restore NuGet dependencies
+- `dotnet build -c Release` compile the plugin
+- Produces `QwqCounterStrikeSharpPlugin.dll` + `.pdb` packaged as `qwqCounterStrikeSharpPlugin.zip`
+- Uploaded to Actions Artifact
 
-#### 🎯 阶段三：release（发布）
+#### 🎯 Stage 3: release (publish)
 
-- 下载 Artifact
-- 使用版本号创建 Git tag
-- 创建 GitHub Release，附上 zip 文件
+- Download the artifact
+- Create a Git tag with the version number
+- Create a GitHub Release with the zip attached
 
-### 📝 💻 使用示例
+### 📝 💻 Usage Examples
 
 ```bash
-# 只构建，不发布
-git commit -m "fix: 修了个bug, build action"
+# Build only, no release
+git commit -m "fix: fixed a bug, build action"
 
-# 构建并发布 Release
-git commit -m "feat: 加了个新功能, build release"
+# Build and publish a Release
+git commit -m "feat: added a new feature, build release"
 ```
 
-### 📦 📄 产物说明
+### 📦 📄 Artifact Contents
 
-Artifact / Release 中的 zip 包含：
+The zip inside the Artifact / Release contains:
 
-| 文件 | 说明 |
+| File | Description |
 |---|---|
-| `QwqCounterStrikeSharpPlugin.dll` | 插件主程序（放到服上 `addons/counterstrikesharp/plugins/`） |
-| `QwqCounterStrikeSharpPlugin.pdb` | 调试符号文件（可选，保留方便报错时定位行号） |
+| `QwqCounterStrikeSharpPlugin.dll` | Main plugin (place in `addons/counterstrikesharp/plugins/`) |
+| `QwqCounterStrikeSharpPlugin.pdb` | Debug symbols (optional, keep for stack trace line numbers) |
 
-### 🔖 🔢 自定义版本号
+### 🔖 🔢 Custom Version
 
-编辑 `qwqCounterStrikeSharpPlugin.csproj` 中的 `<Version>` 字段：
+Edit the `<Version>` field in `qwqCounterStrikeSharpPlugin.csproj`:
 ```xml
 <Version>x.y.z</Version>
 ```
-编辑 `QwqCounterStrikeSharpPlugin.cs` 中的类属性字符串 `ModuleVersion` 的值：
+Edit the `ModuleVersion` string in `QwqCounterStrikeSharpPlugin.cs`:
 ```cs
 public override string ModuleVersion => "x.y.z";
 ```
 
-下次触发 Release 时，标签会自动变成 `vx.y.z-{run_number}`。
+The next Release will automatically use `vx.y.z-{run_number}` as the tag.
