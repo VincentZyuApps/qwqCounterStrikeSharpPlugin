@@ -9,7 +9,7 @@ namespace qwqCounterStrikeSharpPlugin;
 public class QwqCounterStrikeSharpPlugin : BasePlugin
 {
     private const string PlayerJoinedMessage = "qwq！！！";
-    private const string PlayerLeftMessage = "qwq.......";
+    private const string PlayerLeftMessage = "qwq.....";
 
     public override string ModuleName => "qwq CounterStrikeSharp Plugin";
     public override string ModuleVersion => "0.1.7";

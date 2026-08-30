@@ -8,25 +8,25 @@
 
 ---
 
-### 🎯 Commit Log
+### 🎯 提交记录
 
 __COMMIT_LOG__
 
 ---
 
-### ⬇️ Download Release Assets
+### ⬇️ 下载发布文件
 
-| File | Description |
+| 文件 | 说明 |
 |------|------------|
-| [📦 `qwqCounterStrikeSharpPlugin-__VERSION__.dll`](__BASE_URL__/qwqCounterStrikeSharpPlugin-__VERSION__.dll) | 🔌 Plugin main DLL |
-| [📦 `qwqCounterStrikeSharpPlugin-__VERSION__.pdb`](__BASE_URL__/qwqCounterStrikeSharpPlugin-__VERSION__.pdb) | 🐛 Debug symbols (optional, kept for error line numbers) |
+| [📦 `qwqCounterStrikeSharpPlugin-__VERSION__.dll`](__BASE_URL__/qwqCounterStrikeSharpPlugin-__VERSION__.dll) | 🔌 插件主程序 |
+| [📦 `qwqCounterStrikeSharpPlugin-__VERSION__.pdb`](__BASE_URL__/qwqCounterStrikeSharpPlugin-__VERSION__.pdb) | 🐛 调试符号（可选，用于保留报错行号） |
 
-### 📥 Install Plugin
+### 📥 安装插件
 
 ```bash
-# Default Steam path is usually under ~/.local
+# Steam 默认路径通常位于 ~/.local 下
 cd "path/to/Steam/steamapps/common/Counter-Strike Global Offensive/game"
-# Download to plugin subdirectory (dir name must match DLL filename)
+# 下载到插件子目录（目录名必须与 DLL 文件名一致）
 cd ./csgo/addons/counterstrikesharp/plugins/
 mkdir -p qwqCounterStrikeSharpPlugin
 cd qwqCounterStrikeSharpPlugin
@@ -36,19 +36,19 @@ mv qwqCounterStrikeSharpPlugin-__VERSION__.dll qwqCounterStrikeSharpPlugin.dll
 mv qwqCounterStrikeSharpPlugin-__VERSION__.pdb qwqCounterStrikeSharpPlugin.pdb
 ```
 
-### 📋 Deployment Steps
-> See [README.md](https://github.com/VincentZyuApps/qwqCounterStrikeSharpPlugin) for details
+### 📋 部署步骤
+> 详细说明请参阅[简体中文 README](https://github.com/VincentZyuApps/qwqCounterStrikeSharpPlugin/blob/main/README.zh-cn.md)
 
-1. ✅ Server has Metamod:Source + CounterStrikeSharp installed
-2. ✅ Download DLL into `plugins/qwqCounterStrikeSharpPlugin/`
-3. ✅ Restart the server
-4. 🎮 Type `qwq` in chat → receive green reply `qwq!`
-5. 👋 Human join/leave → everyone receives `qwq！！！` / `qwq.......` in chat
+1. ✅ 服务器已安装 Metamod:Source 与 CounterStrikeSharp
+2. ✅ 将 DLL 下载到 `plugins/qwqCounterStrikeSharpPlugin/`
+3. ✅ 重启服务器
+4. 🎮 在聊天框输入 `qwq` → 收到绿色回复 `qwq!`
+5. 👋 真人玩家进服时 → 所有人收到 `qwq！！！`；真人玩家离服时 → 所有人收到 `qwq.....`
 
 ---
 
-### 📊 Build Info
+### 📊 构建信息
 
-- **Build Date**: __BUILD_DATE__
-- **Commit**: __COMMIT_HASH__
-- **Full Changelog**: __CHANGELOG_URL__
+- **构建时间**：__BUILD_DATE__
+- **提交**：__COMMIT_HASH__
+- **完整变更记录**：__CHANGELOG_URL__
