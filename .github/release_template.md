@@ -43,6 +43,7 @@ mv qwqCounterStrikeSharpPlugin-__VERSION__.pdb qwqCounterStrikeSharpPlugin.pdb
 2. ✅ Download DLL into `plugins/qwqCounterStrikeSharpPlugin/`
 3. ✅ Restart the server
 4. 🎮 Type `qwq` in chat → receive green reply `qwq!`
+5. 👋 Human join/leave → everyone receives `qwq！！！` / `qwq.......` in chat
 
 ---
 

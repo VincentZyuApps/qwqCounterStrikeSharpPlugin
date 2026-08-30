@@ -18,7 +18,7 @@
 
 # 🎮 ✨ 🚀 💬 qwqCounterStrikeSharpPlugin
 
-一个 Counter-Strike 2 服务端插件，玩家在聊天框输入 `qwq`，服务端回复 `qwq!`。
+一个 Counter-Strike 2 服务端插件：聊天框输入 `qwq` 会收到 `qwq!`，真人玩家进出服时也会广播 `qwq` 消息。
 
 基于 [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp) 框架，使用 C# (.NET 10) 编写。
 
@@ -83,6 +83,7 @@
 
 5. **进游戏测试**  
    聊天框输入 `qwq` → 收到绿色回复 `qwq!`
+   真人玩家进服或离服 → 所有人会在左下角聊天区看到 `qwq！！！` 或 `qwq.......`
 
 > **[📋 我的自己的环境的部署指令记录](doc/images/prod/prod.md)**
 

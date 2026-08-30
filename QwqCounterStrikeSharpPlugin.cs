@@ -8,11 +8,17 @@ namespace qwqCounterStrikeSharpPlugin;
 
 public class QwqCounterStrikeSharpPlugin : BasePlugin
 {
+    private const string PlayerJoinedMessage = "qwq！！！";
+    private const string PlayerLeftMessage = "qwq.......";
+
     public override string ModuleName => "qwq CounterStrikeSharp Plugin";
-    public override string ModuleVersion => "0.1.6";
+    public override string ModuleVersion => "0.1.7";
 
     public override void Load(bool hotReload)
     {
+        RegisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
+        RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
+
         RegisterEventHandler<EventPlayerChat>((@event, _) =>
         {
             Logger.LogInformation($"EventPlayerChat fired: userid={@event.Userid}, text='{@event.Text}', teamonly={@event.Teamonly}");
@@ -36,5 +42,40 @@ public class QwqCounterStrikeSharpPlugin : BasePlugin
 
             return HookResult.Continue;
         });
+    }
+
+    private static HookResult OnPlayerConnectFull(EventPlayerConnectFull @event, GameEventInfo info)
+    {
+        var player = @event.Userid;
+        if (player is null || !player.IsValid || player.IsBot || player.IsHLTV)
+        {
+            return HookResult.Continue;
+        }
+
+        Server.NextFrame(() => Server.PrintToChatAll($" {ChatColors.Green}{PlayerJoinedMessage}"));
+        return HookResult.Continue;
+    }
+
+    private static HookResult OnPlayerDisconnect(EventPlayerDisconnect @event, GameEventInfo info)
+    {
+        if (!@event.EverFullyConnected)
+        {
+            return HookResult.Continue;
+        }
+
+        var player = @event.Userid;
+        if (player is not null && (player.IsBot || player.IsHLTV))
+        {
+            return HookResult.Continue;
+        }
+
+        if (player is null && (string.IsNullOrWhiteSpace(@event.Networkid) ||
+                               @event.Networkid.Equals("BOT", StringComparison.OrdinalIgnoreCase)))
+        {
+            return HookResult.Continue;
+        }
+
+        Server.PrintToChatAll($" {ChatColors.Green}{PlayerLeftMessage}");
+        return HookResult.Continue;
     }
 }

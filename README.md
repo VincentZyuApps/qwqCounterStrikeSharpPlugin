@@ -18,7 +18,7 @@
 
 # 🎮 ✨ 🚀 💬 qwqCounterStrikeSharpPlugin
 
-A Counter-Strike 2 server plugin. Type `qwq` in chat, the server replies `qwq!`.
+A Counter-Strike 2 server plugin. Type `qwq` in chat for a `qwq!` reply; human joins and leaves also broadcast `qwq` messages.
 
 Built on [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp), written in C# (.NET 10).
 
@@ -83,6 +83,7 @@ Built on [CounterStrikeSharp](https://github.com/roflmuffin/CounterStrikeSharp),
 
 5. **Test In-Game**  
    Type `qwq` in chat → you'll see a green `qwq!` reply.
+   When a human joins or leaves → everyone sees `qwq！！！` or `qwq.......` in the lower-left chat area.
 
 > **[📋 My deployment notes](doc/images/prod/prod.md)**
 
