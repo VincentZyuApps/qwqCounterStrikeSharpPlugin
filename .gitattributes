@@ -1,9 +1,10 @@
 # 🧾 统一文本文件为 LF，减少 Windows 与 Linux 间的无意义差异
 * text=auto eol=lf
 
-# 📊 将所有 Markdown（包括 README）计入 GitHub Linguist 语言统计
-*.md linguist-language=Markdown linguist-detectable=true linguist-documentation=false
-README*.md linguist-language=Markdown linguist-detectable=true linguist-documentation=false
+# 📊 Markdown 默认不计入统计，仅保留根目录英文 README
+*.md linguist-language=Markdown linguist-detectable=false linguist-documentation=true
+README.md linguist-language=Markdown linguist-detectable=true linguist-documentation=false
+README.zh-cn.md linguist-language=Markdown linguist-detectable=false linguist-documentation=true
 
 # 🧮 将所有已追踪的源码、项目文件与自动化脚本计入 GitHub Linguist 语言统计
 *.cs linguist-language=C# linguist-detectable=true
