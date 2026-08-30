@@ -1,0 +1,15 @@
+# 🧾 统一文本文件为 LF，减少 Windows 与 Linux 间的无意义差异
+* text=auto eol=lf
+
+# 📊 将所有 Markdown（包括 README）计入 GitHub Linguist 语言统计
+*.md linguist-language=Markdown linguist-detectable=true linguist-documentation=false
+README*.md linguist-language=Markdown linguist-detectable=true linguist-documentation=false
+
+# 📦 常见二进制产物与图片保持原始字节
+*.dll binary
+*.so binary
+*.pdb binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
