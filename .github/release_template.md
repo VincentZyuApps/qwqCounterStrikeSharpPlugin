@@ -1,6 +1,6 @@
 <div align=center>
 
-[![Downloads](https://img.shields.io/github/downloads/__REPO__/v__VERSION__/total?style=flat-square&logo=github)](https://github.com/__REPO__/releases/tag/v__VERSION__)
+[![Downloads](https://img.shields.io/github/downloads/__REPO__/__VERSION__/total?style=flat-square&logo=github)](https://github.com/__REPO__/releases/tag/__VERSION__)
 [![CS2](https://img.shields.io/badge/for-CounterStrikeSharp-FCAC19?style=flat-square&logo=csharp&logoColor=white&labelColor=2B3980)](https://github.com/roflmuffin/CounterStrikeSharp)
 [![NET](https://img.shields.io/badge/.NET-10-512BD4?style=flat-square&logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
 

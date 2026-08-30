@@ -68,7 +68,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          VERSION="v${{ needs.check.outputs.version }}"
+          VERSION="${{ needs.check.outputs.version }}"
           echo "🗑️ Cleaning up existing release/tag: $VERSION"
           gh release delete "$VERSION" --yes --cleanup-tag 2>/dev/null || echo "No existing release to delete"
           sleep 3
@@ -87,7 +87,7 @@ jobs:
           fi
 
           export REPO VERSION COMMIT_LOG
-          export BASE_URL="https://github.com/${REPO}/releases/download/v${VERSION}"
+          export BASE_URL="https://github.com/${REPO}/releases/download/${VERSION}"
           export BUILD_DATE="$(date -u '+%Y-%m-%d %H:%M UTC')"
           export COMMIT_HASH="[\`${GITHUB_SHA::7}\`](https://github.com/${REPO}/commit/${GITHUB_SHA})"
           export CHANGELOG_URL="https://github.com/${REPO}/compare/${PREV_TAG:-${VERSION}}...${VERSION}"
