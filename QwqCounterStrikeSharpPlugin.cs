@@ -12,7 +12,7 @@ public class QwqCounterStrikeSharpPlugin : BasePlugin
     private const string PlayerLeftMessage = "qwq.....";
 
     public override string ModuleName => "qwq CounterStrikeSharp Plugin";
-    public override string ModuleVersion => "0.1.7";
+    public override string ModuleVersion => "0.2.0";
 
     public override void Load(bool hotReload)
     {
