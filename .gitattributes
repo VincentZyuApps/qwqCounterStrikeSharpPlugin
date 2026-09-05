@@ -7,7 +7,7 @@ README.md linguist-language=Markdown linguist-detectable=true linguist-documenta
 README.zh-cn.md linguist-language=Markdown linguist-detectable=false linguist-documentation=true
 
 # 🧮 将所有已追踪的源码、项目文件与自动化脚本计入 GitHub Linguist 语言统计
-.gitattributes linguist-language=gitattributes linguist-detectable=true linguist-documentation=false
+.gitattributes linguist-language=gitattributes linguist-detectable -linguist-documentation -linguist-vendored -linguist-generated
 *.cs linguist-language=C# linguist-detectable=true
 *.csproj linguist-language=XML linguist-detectable=true
 *.py linguist-language=Python linguist-detectable=true linguist-documentation=false linguist-vendored=false linguist-generated=false
