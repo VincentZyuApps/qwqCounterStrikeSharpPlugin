@@ -162,7 +162,7 @@ async function copyConnectCommand() {
 <template>
   <div class="site-shell">
     <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="返回页面顶部">VZ<span>CS2</span></a>
+      <a class="wordmark" href="#top" aria-label="返回页面顶部">VincentZyu的<span>CS2私服</span></a>
       <nav aria-label="页面导航">
         <a href="#join">进服</a>
         <a href="#commands">指令</a>
@@ -190,6 +190,7 @@ async function copyConnectCommand() {
             <a class="hero-action" href="https://qm.qq.com/q/9IEB9EOYdG" target="_blank" rel="noreferrer">加入 3水_awa 群 <span aria-hidden="true">↗</span></a>
             <button class="hero-action" type="button" @click="copyConnectCommand">{{ copied ? '进服指令已复制' : '复制进服指令' }}</button>
           </div>
+          <p class="group-request">想更换地图、推荐创意工坊地图或提出轮换需求？想增加新玩法、寻找现成插件或编写新插件？欢迎在群里 <strong>@ VincentZyu</strong> 提需求。</p>
         </div>
       </section>
 
