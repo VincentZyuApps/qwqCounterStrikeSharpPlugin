@@ -17,6 +17,11 @@ coverage/
 *.zip
 *.trx
 
+# 🌐 VitePress 本地依赖、缓存与静态站点构建目录
+pages/node_modules/
+pages/docs/.vitepress/cache/
+pages/docs/.vitepress/dist/
+
 # 🎮 本地运行状态与数据库
 *.log
 *.sqlite
