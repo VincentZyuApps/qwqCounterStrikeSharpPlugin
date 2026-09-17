@@ -21,6 +21,7 @@ coverage/
 pages/node_modules/
 pages/docs/.vitepress/cache/
 pages/docs/.vitepress/dist/
+pages/docs/public/lxgw-wenkai/
 
 # 🎮 本地运行状态与数据库
 *.log

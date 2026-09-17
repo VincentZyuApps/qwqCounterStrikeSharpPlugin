@@ -13,6 +13,7 @@ pages/**/*.vue linguist-detectable=false
 pages/**/*.css linguist-detectable=false
 pages/**/*.html linguist-detectable=false
 pages/**/*.json linguist-detectable=false
+pages/**/*.mjs linguist-detectable=false
 
 # 🧮 将所有已追踪的源码、项目文件与自动化脚本计入 GitHub Linguist 语言统计
 .gitattributes linguist-language=gitattributes linguist-detectable -linguist-documentation -linguist-vendored -linguist-generated

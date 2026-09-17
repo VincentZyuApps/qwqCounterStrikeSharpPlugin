@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { withBase } from 'vitepress'
 
 const copied = ref(false)
@@ -75,11 +75,55 @@ const features = [
   }
 ]
 
-const mapImage = computed(() => withBase('/images/minecraft-cache-diamond-sword.png'))
+const carouselSlides = [
+  {
+    src: '/images/minecraft-cache-diamond-sword.png',
+    alt: 'Minecraft Cache 地图中手持钻石剑外观的 CS2 游戏画面'
+  },
+  {
+    src: '/images/minecraft-cache-huntsman-axe.png',
+    alt: 'Minecraft Cache 地图中手持猎杀者匕首钻石斧外观的 CS2 游戏画面'
+  },
+  {
+    src: '/images/minecraft-cache-navy-doppler.png',
+    alt: 'Minecraft Cache 地图中手持深蓝多普勒锯齿爪子刀外观的 CS2 游戏画面'
+  },
+  {
+    src: '/images/minecraft-cache-m9-bayonet.png',
+    alt: 'Minecraft Cache 地图中手持 M9 刺刀外观的 CS2 游戏画面'
+  }
+]
+
 const axeImage = computed(() => withBase('/images/minecraft-cache-huntsman-axe.png'))
 const skinImage = computed(() => withBase('/images/minecraft-cache-navy-doppler.png'))
 const m9Image = computed(() => withBase('/images/minecraft-cache-m9-bayonet.png'))
 const joinGuideLink = computed(() => withBase('/guides/join'))
+const activeSlide = ref(0)
+let carouselTimer: ReturnType<typeof setInterval> | undefined
+
+function stopCarousel() {
+  if (carouselTimer !== undefined) {
+    clearInterval(carouselTimer)
+    carouselTimer = undefined
+  }
+}
+
+function moveSlide(direction: number) {
+  activeSlide.value = (activeSlide.value + direction + carouselSlides.length) % carouselSlides.length
+}
+
+function startCarousel() {
+  stopCarousel()
+  carouselTimer = setInterval(() => moveSlide(1), 6000)
+}
+
+function selectSlide(direction: number) {
+  moveSlide(direction)
+  startCarousel()
+}
+
+onMounted(startCarousel)
+onBeforeUnmount(stopCarousel)
 
 async function copyConnectCommand() {
   try {
@@ -105,9 +149,13 @@ async function copyConnectCommand() {
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="page-title">
-        <img :src="mapImage" alt="Minecraft Cache 地图中手持钻石剑外观的 CS2 游戏画面">
+      <section class="hero" aria-labelledby="page-title" @mouseenter="stopCarousel" @mouseleave="startCarousel">
+        <div class="hero-images" aria-live="polite">
+          <img v-for="(slide, index) in carouselSlides" :key="slide.src" :src="withBase(slide.src)" :alt="slide.alt" :class="['hero-image', { 'is-active': index === activeSlide }]">
+        </div>
         <div class="hero-shade"></div>
+        <button class="carousel-control carousel-control-previous" type="button" title="上一张图片" aria-label="上一张图片" @click="selectSlide(-1)"><span aria-hidden="true">←</span></button>
+        <button class="carousel-control carousel-control-next" type="button" title="下一张图片" aria-label="下一张图片" @click="selectSlide(1)"><span aria-hidden="true">→</span></button>
         <div class="hero-content">
           <p class="eyebrow">COUNTER-STRIKE 2 COMMUNITY SERVER</p>
           <h1 id="page-title">VincentZyu233<br>CS2 私服</h1>
