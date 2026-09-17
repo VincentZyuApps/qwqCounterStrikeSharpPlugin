@@ -99,6 +99,7 @@ const skinImage = computed(() => withBase('/images/minecraft-cache-navy-doppler.
 const m9Image = computed(() => withBase('/images/minecraft-cache-m9-bayonet.png'))
 const joinGuideLink = computed(() => withBase('/guides/join'))
 const activeSlide = ref(0)
+const slideTransition = ref<'slide-right' | 'slide-left'>('slide-right')
 let carouselTimer: ReturnType<typeof setInterval> | undefined
 
 function stopCarousel() {
@@ -109,7 +110,29 @@ function stopCarousel() {
 }
 
 function moveSlide(direction: number) {
-  activeSlide.value = (activeSlide.value + direction + carouselSlides.length) % carouselSlides.length
+  const lastSlide = carouselSlides.length - 1
+
+  if (direction > 0) {
+    if (activeSlide.value === lastSlide) {
+      // 第一张从左侧进入，避免末尾继续向右时出现空白。
+      slideTransition.value = 'slide-left'
+      activeSlide.value = 0
+      return
+    }
+
+    slideTransition.value = 'slide-right'
+    activeSlide.value += 1
+    return
+  }
+
+  if (activeSlide.value === 0) {
+    slideTransition.value = 'slide-right'
+    activeSlide.value = lastSlide
+    return
+  }
+
+  slideTransition.value = 'slide-left'
+  activeSlide.value -= 1
 }
 
 function startCarousel() {
@@ -151,7 +174,9 @@ async function copyConnectCommand() {
     <main id="top">
       <section class="hero" aria-labelledby="page-title" @mouseenter="stopCarousel" @mouseleave="startCarousel">
         <div class="hero-images" aria-live="polite">
-          <img v-for="(slide, index) in carouselSlides" :key="slide.src" :src="withBase(slide.src)" :alt="slide.alt" :class="['hero-image', { 'is-active': index === activeSlide }]">
+          <Transition :name="slideTransition">
+            <img :key="carouselSlides[activeSlide].src" class="hero-image" :src="withBase(carouselSlides[activeSlide].src)" :alt="carouselSlides[activeSlide].alt">
+          </Transition>
         </div>
         <div class="hero-shade"></div>
         <button class="carousel-control carousel-control-previous" type="button" title="上一张图片" aria-label="上一张图片" @click="selectSlide(-1)"><span aria-hidden="true">←</span></button>

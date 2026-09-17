@@ -9,6 +9,7 @@ export default defineConfig({
   base,
   cleanUrls: true,
   head: [
+    ['link', { rel: 'icon', type: 'image/png', href: `${base}favicon.png` }],
     ['link', { rel: 'stylesheet', href: `${base}lxgw-wenkai/lxgw-wenkai.css` }]
   ],
   themeConfig: {
