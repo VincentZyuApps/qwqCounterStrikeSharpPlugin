@@ -188,7 +188,7 @@ async function copyConnectCommand() {
           <div class="hero-actions" aria-label="快速操作">
             <a class="hero-action hero-action-primary" href="#commands">玩法介绍 <span aria-hidden="true">↓</span></a>
             <a class="hero-action" href="https://qm.qq.com/q/9IEB9EOYdG" target="_blank" rel="noreferrer">加入 3水_awa 群 <span aria-hidden="true">↗</span></a>
-            <button class="hero-action" type="button" @click="copyConnectCommand">{{ copied ? '进服指令已复制' : '复制进服指令' }}</button>
+            <button class="hero-action hero-action-copy" type="button" @click="copyConnectCommand">{{ copied ? '进服指令已复制' : '复制进服指令' }}</button>
           </div>
           <p class="group-request">想更换地图、推荐创意工坊地图或提出轮换需求？想增加新玩法、寻找现成插件或编写新插件？欢迎在群里 <strong>@ VincentZyu</strong> 提需求。</p>
         </div>

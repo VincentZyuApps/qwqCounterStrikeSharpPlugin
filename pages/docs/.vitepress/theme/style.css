@@ -119,6 +119,7 @@ h3 { margin-bottom: 22px; font-size: 23px; letter-spacing: 0; }
 .hero-action:hover, .hero-action:focus-visible { border-color: var(--yellow); color: var(--yellow); }
 .hero-action-primary { border-color: var(--yellow); background: var(--yellow); color: var(--ink); }
 .hero-action-primary:hover, .hero-action-primary:focus-visible { background: #ffdb60; color: var(--ink); }
+.hero-action-copy { font-family: "LXGW WenKai", "Microsoft YaHei", "Noto Sans SC", system-ui, sans-serif; }
 .group-request { max-width: 760px; margin: 14px 0 0; border-left: 3px solid var(--yellow); background: rgb(16 23 34 / 76%); padding: 10px 13px; color: #f4f7f9; font-size: 14px; line-height: 1.65; text-shadow: 0 1px 4px rgb(0 0 0 / 60%); }
 .group-request strong { color: var(--yellow); }
 .carousel-control { position: absolute; z-index: 2; top: 50%; width: 44px; height: 52px; transform: translateY(-50%); border: 1px solid rgb(255 255 255 / 72%); background: rgb(16 23 34 / 68%); color: white; cursor: pointer; font-size: 24px; line-height: 1; }
